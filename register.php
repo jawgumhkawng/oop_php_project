@@ -18,7 +18,7 @@
             <div class="wrap">
                 <div class="card p-4 bg-dark border border-secondary shadow-lg">
                     <div class="h3 text-danger mb-2">Register <span class="text-white">Page</span></div><hr class="text-white mb-2">
-                    <form class="form-floating mt-3 " action="_action/register.php" method="post" enctype="multipart/form-data">
+                    <form class="form-floating mt-3 " action="_actions/register.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                     <label for="formFile" class="form-label">Default file input example</label>
                     <input class="form-control" type="file" id="formFile">

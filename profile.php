@@ -42,22 +42,22 @@
                 Image must be jpg,jpeg and png!
             </div>
         <?php endif ?>
-        <?php if(file_exists('./_action/photos/profile.jpg')): ?>
+        <?php if(file_exists('./_actions/photos/profile.jpg')): ?>
             <img 
             class="img-thumbnail mb-3"
-            src="./_action/photos/profile.jpg"
+            src="./_actions/photos/profile.jpg"
             alt="Profile Photo" width="200" height="230px">
         <?php else : ?>
             <p class="alert alert-info">upload your profile photo</p>
             <img 
             class="img-thumbnail mb-3"
-            src="./_action/photos/fake_profile.jpg"
+            src="./_actions/photos/fake_profile.jpg"
             alt="Profile Photo" width="200" height="230px">
             
         <?php endif ?>
           
          <h4 class="mb-2 mt-2  text-light">John Doe (<span class="text-danger">Manager</span>)</h4><hr class="text-secondary ">
-         <form action="./_action/file_upload.php" method="post" 
+         <form action="./_actions/file_upload.php" method="post" 
             enctype="multipart/form-data">
             <div class="input-group mb-3">
             <input type="file" name="photo" class="form-control">
@@ -77,7 +77,7 @@
                 </li>
             </ul>
             <br>
-            <a href="_action/logout.php">Logout</a>
+            <a href="_actions/logout.php">Logout</a>
         </div>
         </div>
     </div>

@@ -23,7 +23,7 @@
                 </div>
                 <?php endif ?>
                     <div class="h3 text-danger mb-2">Login <span class="text-white">Page</span></div><hr class="text-white mb-2">
-                    <form class="form-floating mt-3 " action="_action/login.php" method="post">
+                    <form class="form-floating mt-3 " action="_actions/login.php" method="post">
                     <div class="form-floating mb-3 ">
                         <input type="email" class="form-control " id="floatingInput" name="email" placeholder="name@example.com">
                         <label for="floatingInput">Email address</label>
