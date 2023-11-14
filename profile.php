@@ -1,13 +1,9 @@
 <?php
- session_start();
- 
- if(!isset($_SESSION['user'])) {
+include ('vendor/autoload.php');
 
- header('location: index.php');
+use Helpers\Auth;
 
- exit();
-
- }
+$auth = Auth::check();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +22,6 @@
  </style>
 </head>
 <body class="bg-dark">
-<div class="loading">
-    <div class="spinner"></div>
-  </div>
     <div class="container mt-5">
         <div class="wrap">
         <div class="card bg-dark p-3 border-secondary shadow-lg">
@@ -42,11 +35,12 @@
                 Image must be jpg,jpeg and png!
             </div>
         <?php endif ?>
-        <?php if(file_exists('./_actions/photos/profile.jpg')): ?>
+        
+        <?php if(isset($auth->photo)) : ?>
             <img 
-            class="img-thumbnail mb-3"
-            src="./_actions/photos/profile.jpg"
-            alt="Profile Photo" width="200" height="230px">
+            class="img-thumbnail mb-3 ms-5 position-relative"
+            src="./_actions/photos/<?= $auth->photo ?>"
+            alt="Profile Photo" width="200" height="230px" style="right: -30px;">
         <?php else : ?>
             <p class="alert alert-info">upload your profile photo</p>
             <img 
@@ -56,38 +50,41 @@
             
         <?php endif ?>
           
-         <h4 class="mb-2 mt-2  text-light">John Doe (<span class="text-danger">Manager</span>)</h4><hr class="text-secondary ">
-         <form action="./_actions/file_upload.php" method="post" 
+         <h4 class="mb-2 mt-2  text-light"><?= $auth->name ?> (<span class="text-danger"><?= $auth->role ?></span>)</h4><hr class="text-secondary ">
+     
+        <form action="./_actions/file_upload.php" method="post" 
             enctype="multipart/form-data">
             <div class="input-group mb-3">
             <input type="file" name="photo" class="form-control">
-            <button class="btn btn-secondary">Upload</button>
+            <button class="btn btn-secondary">Update Photo</button>
             </div>
         </form>
+       
             <ul class="list-group border-secondary mt-3">
                 
                 <li class="list-group-item bg-dark text-light">
-                <b>Email:</b> john.doe@gmail.com
+                <b>Email:</b> <?= $auth->email ?>
                 </li>
                 <li class="list-group-item bg-dark text-light">
-                <b>Phone:</b> (09) 243 867 645
+                <b>Phone:</b> <?= $auth->phone ?>
                 </li>
                 <li class="list-group-item bg-dark text-light">
-                <b>Address:</b> No. 321, Main Street, West City
+                <b>Address:</b> <?= $auth->address ?>
                 </li>
             </ul>
             <br>
-            <a href="_actions/logout.php">Logout</a>
+            <div class=""><a href="admin.php" class="btn btn-primary">Users Manage</a>
+            <a href="_actions/logout.php" class="btn btn-danger float-end">Logout</a></div>
         </div>
         </div>
     </div>
-    <script>
+    <!-- <script>
         
 // loading
 
 window.addEventListener('load', () => {
   document.querySelector(".loading").style.display = "none";
 })
-    </script>
+    </script> -->
 </body>
 </html>

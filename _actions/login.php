@@ -1,16 +1,29 @@
 <?php
 session_start();
 
+include ('../vendor/autoload.php');
+
+use Libs\Database\MySQL;
+use Libs\Database\UsersTable;
+use Helpers\HTTP;
+
 $email = $_POST['email'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 
-if ($email === 'jaw@gmail.com' and $password === 'jaw123') {
+$table = new UsersTable(new MySQL());
 
-   $_SESSION['user'] = ['username' => 'John Doe'];
- header('location: ../profile.php');
+$user = $table->FindByEmailAndPassword($email, $password);
 
-} else {
+if($user) {
 
- header('location: ../index.php?incorrect=1');
+  if ($user->suspended){
+    HTTP::redirect("/index.php", "suspended=1");
+  }
+
+  $_SESSION['user'] = $user;
+  HTTP::redirect("/admin.php");
+}else {
+  HTTP::redirect("/index.php", "incorrect=1");
 
 }
+

@@ -18,9 +18,19 @@
             <div class="wrap">
                 <div class="card p-4 bg-dark border border-secondary shadow-lg">
                 <?php if ( isset($_GET['incorrect']) ) : ?>
-                <div class="alert alert-danger">
-                Incorrect Email or Password
-                </div>
+                    <div class="alert alert-danger">
+                    Incorrect Email or Password
+                    </div>
+                <?php endif ?>
+                <?php if ( isset($_GET['registered']) ) : ?>
+                    <div class="alert alert-info">
+                    Refistertion Success! Please Login
+                    </div>
+                <?php endif ?>
+                <?php if ( isset($_GET['suspended']) ) : ?>
+                    <div class="alert alert-danger">
+                    Your account has SUSPENDED!
+                    </div>
                 <?php endif ?>
                     <div class="h3 text-danger mb-2">Login <span class="text-white">Page</span></div><hr class="text-white mb-2">
                     <form class="form-floating mt-3 " action="_actions/login.php" method="post">

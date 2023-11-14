@@ -1,25 +1,39 @@
 <?php
 
+include('../vendor/autoload.php');
+
+use Libs\Database\MySQL;
+use Libs\Database\UsersTable;
+use Helpers\Auth;
+use Helpers\HTTP;
+
+$auth = Auth::check();
+
+$table = new UsersTable( new MySQL());
+
+$name = $_FILES['photo']['name'];
 $error = $_FILES['photo']['error'];
-
 $tmp = $_FILES['photo']['tmp_name'];
-
 $type = $_FILES['photo']['type'];
 
 if($error) {
-    header('location: ../profile.php?error=file');
-    exit();
+
+    HTTP::redirect('/profile.php', 'error=file');
 }
 
 if($type === "image/jpg" || $type === "image/jpeg" || $type === "image/png"){
 
-    move_uploaded_file($tmp, "photos/profile.jpg");
+    $table->UpdatePhoto($name ,$auth->id );
 
-    header('location:  ../profile.php');
+    move_uploaded_file($tmp, "photos/$name");
+
+    $auth->photo = $name;
+
+    HTTP::redirect('/profile.php');
 
 } else {
 
-    header('location:  ../profile.php?error=type');
+    HTTP::redirect('/profile.php','error=type');
 }
 
 
