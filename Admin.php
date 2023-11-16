@@ -58,6 +58,7 @@ $auth = Auth::check();
         <table class="table table-hover  table-dark">
             <tr>
                 <th>ID</th>
+                <th>PHOTO</th>
                 <th>NAME</th>
                 <th>EMAIL</th>
                 <th>PHONE</th>
@@ -68,11 +69,21 @@ $auth = Auth::check();
             <?php $i = 1; ?>
             <?php foreach ($all as $user) :  ?>
             <tr>
-                <td><?= $i ?></td>
-                <td><?= $user->name ?></td>
-                <td><?= $user->email ?></td>
-                <td><?= $user->phone ?></td>
-                <td><?= substr($user->address,0,20) ?></td>
+                <?php if($user->suspended) : ?>
+                    <td class="text-danger"><?= $i ?></td>
+                    <td><img src="./_actions/photos/<?= $user->photo ?>" width="35px" class="rounded-circle shadow-lg " style="border: 2px solid red; bottom:10px"></td>
+                    <td class="text-danger"><?= $user->name ?></td>
+                    <td class="text-danger"><?= $user->email ?></td>
+                    <td class="text-danger"><?= $user->phone ?></td>
+                    <td class="text-danger"><?= substr($user->address,0,20) ?></td>
+                <?php else : ?>
+                    <td><?= $i ?></td>
+                    <td><img src="./_actions/photos/<?= $user->photo ?>" width="35px" class="rounded-circle shadow-lg " style="border: 2px solid gray; bottom:10px"></td>
+                    <td><?= $user->name ?></td>
+                    <td><?= $user->email ?></td>
+                    <td><?= $user->phone ?></td>
+                    <td><?= substr($user->address,0,20) ?></td>
+                <?php endif ?>
                 <td>
                 <?php if($user->value == '1'): ?>
 
@@ -116,7 +127,7 @@ $auth = Auth::check();
 
                                     <div class="dropdown-menu dropdown-menu-dark">
                                         <a href="./_actions/role.php?id=<?= $user->id ?>&role_id=1"  class="dropdown-item">User</a>
-                                        <a href="./_actions/role.php?id=<?= $user->id ?>&role_id=2"  class="dropdown-item">Manger</a>
+                                        <a href="./_actions/role.php?id=<?= $user->id ?>&role_id=2"  class="dropdown-item">Manager</a>
                                         <a href="./_actions/role.php?id=<?= $user->id ?>&role_id=3"  class="dropdown-item">Admin</a>
                                     </div>
                                 <?php endif ?>
@@ -128,7 +139,7 @@ $auth = Auth::check();
                             <?php if($user->suspended) : ?>
                                 <a href="./_actions/unsuspend.php?id=<?= $user->id ?>" class="btn btn-sm btn-info">Unban</a>
 
-                                <?php else : ?>
+                            <?php else : ?>
                                 <a href="./_actions/suspend.php?id=<?= $user->id ?>" class="btn btn-sm btn-warning">Ban</a>
 
                             <?php endif ?>

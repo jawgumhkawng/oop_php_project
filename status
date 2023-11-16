@@ -1,0 +1,17 @@
+[33mcommit d665f50f5a4143fbf23ec45fd1d7814ffe4f40e5[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: jawgumhkawng <nawbosco007@gmail.com>
+Date:   Tue Nov 14 15:29:40 2023 +0630
+
+    add admin
+
+[33mcommit 4437d36e722fc286ad2943bae6193fc0b64db9c6[m
+Author: jawgumhkawng <nawbosco007@gmail.com>
+Date:   Fri Nov 10 00:00:47 2023 +0630
+
+    db connect and create faker factory and create user insert
+
+[33mcommit e058a8f2da81ca9d0ab7b372f83cae5ed3bdab52[m
+Author: jawgumhkawng <nawbosco007@gmail.com>
+Date:   Thu Nov 9 14:04:00 2023 +0630
+
+    build upload and some page
