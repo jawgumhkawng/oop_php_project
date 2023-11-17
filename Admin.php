@@ -53,7 +53,7 @@ $auth = Auth::check();
         </div>
 
        </div>
-        <!-- <div class="head mb-5 mt-5 text-white btn btn-primary">User Manage <span class="badge bg-danger text-white"> <?= count($all) ?></span> </div> -->
+   
 
         <table class="table table-hover  table-dark">
             <tr>
